@@ -29,4 +29,21 @@ export class PostResolver {
         await em.persistAndFlush(post);
         return post;
     }
+
+    // graphQL query - CRUD - update
+    @Mutation(() => Post, { nullable: true })
+    async updatePost(
+        @Arg("id") id: number,
+        @Arg("title", () => String, { nullable: true }) title: string,
+        @Ctx() { em }: MyContext): Promise<Post | null> {
+        const post = await em.findOne(Post, { id });
+        if (!post) {
+            return null;
+        }
+        if (typeof title !== "undefined") {
+            post.title = title;
+            await em.persistAndFlush(post);
+        }
+        return post;
+    }
 }
