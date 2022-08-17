@@ -46,4 +46,13 @@ export class PostResolver {
         }
         return post;
     }
+
+    // graphQL query - CRUD - delete
+    @Mutation(() => Boolean)
+    async deletePost(
+        @Arg("id") id: number,
+        @Ctx() { em }: MyContext): Promise<boolean> {
+        await em.nativeDelete(Post, { id });
+        return true;
+    }
 }
