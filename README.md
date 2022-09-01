@@ -1,7 +1,7 @@
 
 # redditMalc
 
-A reddit clone built using react and typescript
+A reddit clone built using react and typescript (this repo handles backend)
 
 
 ## Acknowledgements
